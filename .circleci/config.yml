@@ -30,10 +30,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install MySQL driver
+          name: Install pgsql driver
           command: |
-            sudo docker-php-ext-configure pdo_pgsql --with-pdo-pgsql=pgsqlnd
-            sudo docker-php-ext-install pdo pdo_pgsql
+            apt-get install -y libpq-dev \
+            && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql  \
+            && docker-php-ext-install pdo pdo_pgsql
 
       - run:
           name: Install Node
