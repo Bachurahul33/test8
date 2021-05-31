@@ -74,8 +74,9 @@ jobs:
           command: |
            
             sudo apt-get install postgresql-client 
-            createdb -h 127.0.0.1 test8db -O postgres
-            sudo php artisan migrate --env=testing
+            sudo php artisan migrate 
+        #    createdb -h 127.0.0.1 test8db -O postgres
+            
           # createdb -h 127.0.0.1 laravel1db -O postgres
             
 
