@@ -17,12 +17,29 @@ jobs:
       # - image: circleci/mysql:5.7-ram
       #
       # - image: redis:2.8.19
+       # CircleCI PostgreSQL images available at: https://hub.docker.com/r/circleci/postgres/
+      - image: circleci/postgres:9.6-alpine
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ''
+          POSTGRES_DB: test8db 
 
     steps:
       - checkout
+      - run:
+          name: Install MySQL driver
+          command: |
+            sudo docker-php-ext-configure pdo_pgsql --with-pdo-pgsql=pgsqlnd
+            sudo docker-php-ext-install pdo pdo_pgsql
 
-      - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
-      - run: sudo docker-php-ext-install zip
+      - run:
+          name: Install Node
+          command: |
+            curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+            sudo apt-get install -y nodejs
 
       # Download and cache dependencies
       - restore_cache:
@@ -50,7 +67,7 @@ jobs:
 
       # prepare the database
       - run: touch storage/testing.sqlite
-      - run: php artisan migrate --env=testing --database=sqlite_testing --force
+      - run: php artisan migrate --env=testing --database=pgsql --force
 
       # run tests with phpunit or codecept
       #- run: ./vendor/bin/phpunit
