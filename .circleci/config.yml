@@ -67,6 +67,10 @@ jobs:
           paths:
             - node_modules
 
+      - run:
+           name: "Generate App key"
+           command: php artisan key:generate
+
    
       # prepare the database
       - run:
