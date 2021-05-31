@@ -69,14 +69,14 @@ jobs:
 
    
       # prepare the database
-      - image: circleci/php:7.4-node-browsers
       - run:
           name: "Create database and run migration"
           command: |
-            sudo apt-get update
-            sudo apt-get install postgresql-client 
-            createdb -h 127.0.0.1 test8db 
-            sudo php artisan migrate --env=testing
+           sudo php artisan migrate --env=testing
+        #    sudo apt-get update
+        #    sudo apt-get install postgresql-client 
+        #    createdb -h 127.0.0.1 test8db 
+           
           # createdb -h 127.0.0.1 laravel1db -O postgres
             
 
