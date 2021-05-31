@@ -32,10 +32,11 @@ jobs:
       - run:
           name: Install pgsql driver
           command: |
-            sudo apt-get install libpq-dev
-           
-            sudo docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
+            sudo apt-get update
+            sudo docker-php-ext-install zip
             sudo docker-php-ext-install pdo pdo_pgsql
+         #  sudo docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
+           
 
       - run:
           name: Install Node
