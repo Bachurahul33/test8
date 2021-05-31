@@ -72,7 +72,7 @@ jobs:
           name: "Create database and run migration"
           command: |
             sudo apt-get update
-            sudo apt-get install postgresql-client-9.6 
+            sudo apt-get install postgresql-client 
             createdb -h 127.0.0.1 laravel1db -O postgres add_ssh_keys
             php artisan migrate --env=testing
 
