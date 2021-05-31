@@ -73,8 +73,10 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install postgresql-client 
-            createdb -h 127.0.0.1 laravel1db -O postgres add_ssh_keys
+            pgsql -h 127.0.0.1 -u postgres test8db
             php artisan migrate --env=testing
+          # createdb -h 127.0.0.1 laravel1db -O postgres
+            
 
       # run tests with phpunit or codecept
       #- run: ./vendor/bin/phpunit
