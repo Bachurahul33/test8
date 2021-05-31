@@ -33,7 +33,7 @@ jobs:
           name: Install pgsql driver
           command: |
             sudo apt-get update 
-            sudo docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql  
+            sudo docker-php-ext-configure pgsql -with-pgsql=/usr/pgsql-9.8/bin/ 
             sudo docker-php-ext-install pdo pdo_pgsql
 
       - run:
