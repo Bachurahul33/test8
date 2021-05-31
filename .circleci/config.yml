@@ -68,8 +68,12 @@ jobs:
             - node_modules
 
       # prepare the database
-    
-      - run: php artisan migrate --env=testing --database=pgsql --force
+      - run:
+          name: "Create database and run migration"
+          command: |
+            sudo apt install -y postgresql-client 
+            createdb -h 127.0.0.1 laravel1db -O postgres
+            php artisan migrate --env=testing
 
       # run tests with phpunit or codecept
       #- run: ./vendor/bin/phpunit
