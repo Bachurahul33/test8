@@ -74,7 +74,8 @@ jobs:
           command: |
            
             sudo apt-get install postgresql-client 
-            sudo php artisan migrate --env
+            sudo php artisan migrate 
+            background: true
         #    createdb -h 127.0.0.1 test8db -O postgres
             
           # createdb -h 127.0.0.1 laravel1db -O postgres
@@ -84,3 +85,26 @@ jobs:
       #- run: ./vendor/bin/phpunit
       - run: ./vendor/bin/codecept build
       - run: ./vendor/bin/codecept run
+
+      
+      - run:
+          name: "Install Dusk and Update Chrome Drivers"
+          command: |
+            composer require --dev laravel/dusk
+            composer require --dev staudenmeir/dusk-updater
+            
+
+      - run:
+          name: Start Chrome Driver
+          command: ./vendor/laravel/dusk/bin/chromedriver-linux
+          background: true
+
+      - run:
+          name: Run Laravel Server
+          command: php artisan serve
+          
+      - run:
+          name: Run Browser Tests Tests
+          command: php artisan dusk
+         
+
