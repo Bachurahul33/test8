@@ -25,8 +25,9 @@ jobs:
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: ''
-        #  POSTGRES_DB: test8db 
-
+          POSTGRES_DB: test8db 
+   #   - ports:
+    #     port: 5432
 
     steps:
       - checkout
@@ -78,7 +79,7 @@ jobs:
           name: "Create database and run migration"
           command: |
             sudo apt-get install postgresql-client
-            createdb -h 127.0.0.1 -p 5432 -U postgres test8db
+            createdb -h 127.0.0.1:8000 -p 5432 -U postgres test8db
             sudo php artisan migrate --env=testing 
           #  createdb -h 127.0.0.1 -O postgres
             
