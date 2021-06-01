@@ -77,11 +77,11 @@ jobs:
 
    
       # prepare the database
-      - run:
-          name: "Create database and run migration"
-          command: |
-            sudo apt-get install postgresql-client
-            php artisan migrate --env=testing 
+  #    - run:
+   #       name: "Create database and run migration"
+    #      command: |
+     #       sudo apt-get install postgresql-client
+      #      php artisan migrate --env=testing 
        #    createdb -h 127.0.0.1 -p 5432 -U postgres test8db 
             
            
