@@ -22,10 +22,10 @@ jobs:
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: ''
-          POSTGRES_DB: test8db 
+    #    environment:
+    #      POSTGRES_USER: postgres
+     #     POSTGRES_PASSWORD: ''
+      #    POSTGRES_DB: test8db 
    #   - ports:
     #     port: 5432
 
@@ -74,22 +74,25 @@ jobs:
            command: php artisan key:generate
 
            # run tests with phpunit
-      - run:
-          name: "Run Unit Tests"
-          command: ./vendor/bin/phpunit tests/Unit
+      
 
    
       # prepare the database
       - run:
           name: "Create database and run migration"
           command: |
-           php artisan migrate --env=testing 
-    #       sudo apt-get install postgresql-client
-    #        -h 127.0.0.1 -p 5432 -u postgres 
+           
+            sudo apt-get install postgresql-client
+            createdb -h 127.0.0.1 -p 5432 -U postgres test8dbdb 
+            php artisan migrate --env=testing 
            
           #  createdb -h 127.0.0.1 -O postgres
         #    createdb -h 127.0.0.1 test8db -O postgres
       
+      - run:
+          name: "Run Unit Tests"
+          command: ./vendor/bin/phpunit tests/Unit
+
       - run:
           name: "Install Dusk and Update Chrome Drivers"
           command: |
