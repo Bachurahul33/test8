@@ -22,12 +22,11 @@ jobs:
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  
-    #    environment:
-    #      POSTGRES_USER: postgres
-     #     POSTGRES_PASSWORD: ''
-      #    POSTGRES_DB: test8db 
-   #   - ports:
-    #     port: 5432
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ''
+          POSTGRES_DB: test8db 
+   
 
     steps:
       - checkout
@@ -81,9 +80,8 @@ jobs:
       - run:
           name: "Create database and run migration"
           command: |
-           
             sudo apt-get install postgresql-client
-            createdb -h 127.0.0.1 -p 5432 -U postgres test8db 
+            createdb -h 127.0.0.1 -p 5432 -u postgres test8db 
             php artisan migrate --env=testing 
            
           #  createdb -h 127.0.0.1 -O postgres
