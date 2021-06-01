@@ -97,7 +97,7 @@ jobs:
           command: |
             composer require --dev laravel/dusk
             composer require -dev staudenmeir/dusk-updater
-            php artisan dusk:install
+            
             
 
       - run:
@@ -109,6 +109,10 @@ jobs:
           name: Run Laravel Server
           command: php artisan serve
           background: true
+
+      - run:
+          name: "install laravel"
+          command: php artisan dusk:install
           
       - run:
           name: Run Browser Tests Tests
