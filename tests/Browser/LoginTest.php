@@ -32,7 +32,7 @@ class LoginTest extends DuskTestCase
     public function test_Login()
     {
         $this->browse(function (Browser $browser) {
-                    $browser->visit('/login')
+            $browser->visit('/login')
                     ->assertSee('Login')
                     ->type('email', 'bachurahul@gmail.com')
                     ->type('password', '123456789')
