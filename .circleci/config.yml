@@ -76,8 +76,8 @@ jobs:
       - run:
           name: "Create database and run migration"
           command: |
-            port:5432
-            createdb -h 127.0.0.1 
+            
+            createdb -h 127.0.0.1 -u postgres
             sudo apt-get install postgresql-client 
             sudo php artisan migrate --env=testing
           
