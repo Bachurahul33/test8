@@ -27,6 +27,13 @@ jobs:
           POSTGRES_PASSWORD: ''
           POSTGRES_DB: test8db 
 
+      - run:
+          name: Install circleci
+          command: |
+            sudo snap install docker circleci
+            sudo snap connect circleci:docker docker
+
+
     steps:
       - checkout
       - run:
