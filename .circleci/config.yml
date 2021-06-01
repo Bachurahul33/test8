@@ -83,20 +83,12 @@ jobs:
       - run:
           name: "Create database and run migration"
           command: |
-            sudo apt-get install postgresql-client
-            sudo -h 127.0.0.1 -p 5432 -u postgres 
-            sudo php artisan migrate --env=testing 
+           php artisan migrate --env=testing 
+    #       sudo apt-get install postgresql-client
+    #        -h 127.0.0.1 -p 5432 -u postgres 
+           
           #  createdb -h 127.0.0.1 -O postgres
-            
-          
         #    createdb -h 127.0.0.1 test8db -O postgres
-            
-
-      # run tests with phpunit or codecept
-      #- run: ./vendor/bin/phpunit
-      - run: ./vendor/bin/codecept build
-      - run: ./vendor/bin/codecept run
-
       
       - run:
           name: "Install Dusk and Update Chrome Drivers"
