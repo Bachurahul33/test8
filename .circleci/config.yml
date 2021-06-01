@@ -76,13 +76,10 @@ jobs:
       - run:
           name: "Create database and run migration"
           command: |
-           sudo apt-get install php-pgsql
             sudo apt-get install postgresql-client 
-            sudo php artisan migrate --env=testing
+            sudo php artisan migrate --env
           
         #    createdb -h 127.0.0.1 test8db -O postgres
-            
-          # createdb -h 127.0.0.1 laravel1db -O postgres
             
 
       # run tests with phpunit or codecept
