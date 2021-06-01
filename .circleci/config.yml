@@ -110,9 +110,6 @@ jobs:
           command: php artisan serve
           background: true
 
-      - run:
-          name: "install laravel"
-          command: php artisan dusk:install
           
       - run:
           name: Run Browser Tests Tests
